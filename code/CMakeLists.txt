@@ -43,6 +43,9 @@ if (UNIX AND NOT WIN32)
             add_executable(samplesshd-cb samplesshd-cb.c)
             target_link_libraries(samplesshd-cb ${LIBSSH_SHARED_LIBRARY} ${ARGP_LIBRARIES} util)
 
+            add_executable(samplesshd-cb-patched samplesshd-cb-patched.c)
+            target_link_libraries(samplesshd-cb-patched ${LIBSSH_SHARED_LIBRARY} ${ARGP_LIBRARIES} util)
+
             add_executable(proxy proxy.c)
             target_link_libraries(proxy ${LIBSSH_SHARED_LIBRARY} ${ARGP_LIBRARIES})
         endif (WITH_GSSAPI AND GSSAPI_FOUND)
