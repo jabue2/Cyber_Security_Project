@@ -234,6 +234,11 @@ int main(int argc, char **argv)
         ssh_bind_options_set(sshbind, SSH_BIND_OPTIONS_BINDPORT_STR, portstr);
     }
 
+     if (ssh_bind_listen(sshbind) < 0) {
+        fprintf(stderr, "Error listening to socket: %s\n", ssh_get_error(sshbind));
+        return 1;
+    }
+
     /* 4) Accept exactly one incoming connection */
     if (ssh_bind_accept(sshbind, session) == SSH_ERROR) {
         fprintf(stderr, "Error accepting: %s\n", ssh_get_error(sshbind));
