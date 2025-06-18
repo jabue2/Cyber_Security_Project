@@ -37,10 +37,10 @@ This repository is organized into the following directories:
   - `samplesshd-cb-patched.c`: The patched server code that prevents the bypass.
   - `CMakeLists.txt`: The build configuration file for the server examples.
 - **`/docs`**: Contains the project documentation.
-  - `Cybersecurity_Jan_Henrik.pdf`: The detailed final project report.
+  - `Cybersecurity_Report.pdf`: The detailed final project report.
   - `Cybersecurity_Project_Proposal.pdf`: The initial project proposal.
 - **`/presentation`**: Contains the project presentation and a video demonstration.
-  - `Presentation.pdf`: The project presentation slides.
+  - `Cybersecurity_Presentation.pdf`: The project presentation slides.
   - `Demo.mp4`: A video demonstrating the multi-stage attack.
 
 ## Setting Up the Vulnerable Server
@@ -62,7 +62,7 @@ To replicate the environment, follow these steps as detailed in the project repo
 **3. Download and Prepare Vulnerable libssh**
 - Download a vulnerable version of `libssh` (e.g., 0.7.4).
   ```bash
-  wget [https://www.libssh.org/files/0.7/libssh-0.7.4.tar.xz](https://www.libssh.org/files/0.7/libssh-0.7.4.tar.xz)
+  wget https://www.libssh.org/files/0.7/libssh-0.7.4.tar.xz --no-check-certificate
   tar xvf libssh-0.7.4.tar.xz
   cd libssh-0.7.4
   ```
@@ -121,7 +121,7 @@ The server is now running and susceptible to the attack.
     # In the compromised shell
     cat /etc/passwd | grep -b sandbox
     # Example output: 2244:sandbox:x:1001:1001:,,,:/home/userx:/bin/bash
-    # The UID '1001' starts after the username and two colons. Calculate the offset.
+    # The UID '1001' starts after the username and two colons. Calculate the offset (here 10).
     ```
 3.  **Modify and Compile:** Edit the Dirty COW exploit code to target `/etc/passwd` and use the calculated offset to overwrite the user ID with `0000`. Compile it using `gcc`.
     ```sh
